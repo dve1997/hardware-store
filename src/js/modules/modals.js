@@ -64,16 +64,16 @@ const modules = () => {
     ".popup_content"
   );
 
-  function showModalTimer(elemModal) {
-    const getElemModal = document.querySelector(elemModal);
+  // function showModalTimer(elemModal) {
+  //   const getElemModal = document.querySelector(elemModal);
 
-    setTimeout(() => {
-      getElemModal.style.display = "block";
-      document.body.style.overflow = "hidden";
-    }, 3000);
-  }
+  //   setTimeout(() => {
+  //     getElemModal.style.display = "block";
+  //     document.body.style.overflow = "hidden";
+  //   }, 60000);
+  // }
 
-  showModalTimer(".popup");
+  // showModalTimer(".popup");
 };
 
 export default modules;
