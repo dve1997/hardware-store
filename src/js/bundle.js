@@ -1,6 +1,69 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/forms.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/forms.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const forms = () => {
+  function form() {
+    const form = document.querySelectorAll("form"),
+      inputsPhone = document.querySelectorAll("input[name='user_phone']");
+    inputsPhone.forEach(item => {
+      item.addEventListener("input", e => {
+        item.value = item.value.replace(/\D/, "");
+      });
+    });
+    const messeng = {
+      loading: "Идет отправка формы...",
+      complite: "Спасибо! Мы скоро с Вами свяжемся!",
+      failed: "Произошла ошибка..."
+    };
+    form.forEach(item => {
+      item.addEventListener("submit", e => {
+        e.preventDefault();
+        function createElem(status) {
+          let messElemLoading = document.createElement("div");
+          let messElemDone = document.createElement("div");
+          if (status === messeng.loading) {
+            messElemLoading.classList.add("delete");
+            messElemLoading.textContent = `${status}`;
+            item.append(messElemLoading);
+          } else {
+            document.querySelector(".delete").remove();
+            messElemDone.textContent = `${status}`;
+            item.append(messElemDone);
+            item.reset();
+            setTimeout(() => {
+              messElemDone.remove();
+            }, 3000);
+          }
+        }
+        createElem(messeng.loading);
+        const formData = new FormData(item);
+        fetch("assets/server.php", {
+          method: "POST",
+          body: formData
+        }).then(prom => prom.text()).then(data => {
+          console.log(data);
+          createElem(messeng.complite);
+        }).catch(error => {
+          console.log(error);
+          createElem(messeng.failed);
+        });
+      });
+    });
+  }
+  form();
+};
+/* harmony default export */ __webpack_exports__["default"] = (forms);
+
+/***/ }),
+
 /***/ "./src/js/modules/modals.js":
 /*!**********************************!*\
   !*** ./src/js/modules/modals.js ***!
@@ -9,9 +72,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-
-
-const modules = () => {
+const modals = () => {
   function showModals(elemEvent, elemTarget, elemModal, elemClose, elemCloseCheck) {
     const getElemEvent = document.querySelector(elemEvent),
       getElemModal = document.querySelector(elemModal);
@@ -57,7 +118,7 @@ const modules = () => {
   // showModalTimer(".popup");
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (modules);
+/* harmony default export */ __webpack_exports__["default"] = (modals);
 
 /***/ }),
 
@@ -14021,6 +14082,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
+
 
 
 
@@ -14029,6 +14092,7 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener("DOMContentLoaded", e => {
   (0,_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  (0,_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 }();
 /******/ })()

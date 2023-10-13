@@ -1,6 +1,4 @@
-"use strict";
-
-const modules = () => {
+const modals = () => {
   function showModals(
     elemEvent,
     elemTarget,
@@ -76,4 +74,4 @@ const modules = () => {
   // showModalTimer(".popup");
 };
 
-export default modules;
+export default modals;
