@@ -7,6 +7,7 @@ import modals from "./modules/modals";
 import tabs from "./modules/tabs";
 import forms from "./modules/forms";
 import dataForms from "./modules/dataForms";
+import timer from "./modules/timer";
 
 document.addEventListener("DOMContentLoaded", (e) => {
   let dataForm = {};
@@ -25,4 +26,5 @@ document.addEventListener("DOMContentLoaded", (e) => {
   tabs();
   forms(dataForm);
   dataForms(dataForm);
+  timer();
 });

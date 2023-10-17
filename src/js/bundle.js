@@ -364,6 +364,48 @@ const tabs = () => {
 
 /***/ }),
 
+/***/ "./src/js/modules/timer.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/timer.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const timer = () => {
+  let dataDedlDate = {};
+  function createDate() {
+    const dedlDate = new Date(2023, 9, 31);
+    const dedlDateMS = dedlDate - new Date();
+    dataDedlDate.days = Math.floor(dedlDateMS / (1000 * 60 * 60 * 24));
+    dataDedlDate.hours = Math.floor(dedlDateMS / (1000 * 60 * 60) % 24);
+    dataDedlDate.minutes = Math.floor(dedlDateMS / (1000 * 60) % 60);
+    dataDedlDate.seconds = Math.floor(dedlDateMS / 1000 % 60);
+  }
+  function showTimer(data) {
+    const elDays = document.querySelector("#days"),
+      elHours = document.querySelector("#hours"),
+      elMinutes = document.querySelector("#minutes"),
+      elSeconds = document.querySelector("#seconds");
+    elDays.textContent = `${data.days}`;
+    elHours.textContent = `${data.hours}`;
+    elMinutes.textContent = `${data.minutes}`;
+    elSeconds.textContent = `${data.seconds}`;
+  }
+  const stop = setInterval(() => {
+    createDate();
+    if (dataDedlDate.seconds >= 0) {
+      createDate();
+      showTimer(dataDedlDate);
+    } else {
+      clearInterval(stop);
+    }
+  }, 1000);
+};
+/* harmony default export */ __webpack_exports__["default"] = (timer);
+
+/***/ }),
+
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -14194,6 +14236,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
 /* harmony import */ var _modules_dataForms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/dataForms */ "./src/js/modules/dataForms.js");
+/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
+
 
 
 
@@ -14219,6 +14263,7 @@ document.addEventListener("DOMContentLoaded", e => {
   (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_4__["default"])();
   (0,_modules_forms__WEBPACK_IMPORTED_MODULE_5__["default"])(dataForm);
   (0,_modules_dataForms__WEBPACK_IMPORTED_MODULE_6__["default"])(dataForm);
+  (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 }();
 /******/ })()
