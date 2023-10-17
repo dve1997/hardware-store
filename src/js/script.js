@@ -8,6 +8,7 @@ import tabs from "./modules/tabs";
 import forms from "./modules/forms";
 import dataForms from "./modules/dataForms";
 import timer from "./modules/timer";
+import images from "./modules/images";
 
 document.addEventListener("DOMContentLoaded", (e) => {
   let dataForm = {};
@@ -27,4 +28,5 @@ document.addEventListener("DOMContentLoaded", (e) => {
   forms(dataForm);
   dataForms(dataForm);
   timer();
+  images();
 });

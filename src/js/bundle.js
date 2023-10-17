@@ -173,6 +173,43 @@ const forms = data => {
 
 /***/ }),
 
+/***/ "./src/js/modules/images.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/images.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const images = () => {
+  const popupImg = document.createElement("div"),
+    imgBig = document.createElement("img"),
+    works = document.querySelector(".works");
+  popupImg.classList.add("popup");
+  popupImg.style.justifyContent = "center";
+  popupImg.style.alignItems = "center";
+  works.append(popupImg);
+  works.addEventListener("click", e => {
+    e.preventDefault();
+    let target = e.target;
+    if (target.closest(".preview")) {
+      let href = target.parentNode.href;
+      imgBig.src = href;
+      popupImg.prepend(imgBig);
+      popupImg.style.display = "flex";
+    }
+  });
+  popupImg.addEventListener("click", e => {
+    let target = e.target;
+    if (!target.closest("img")) {
+      popupImg.style.display = "none";
+    }
+  });
+};
+/* harmony default export */ __webpack_exports__["default"] = (images);
+
+/***/ }),
+
 /***/ "./src/js/modules/modals.js":
 /*!**********************************!*\
   !*** ./src/js/modules/modals.js ***!
@@ -14237,6 +14274,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
 /* harmony import */ var _modules_dataForms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/dataForms */ "./src/js/modules/dataForms.js");
 /* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
+/* harmony import */ var _modules_images__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/images */ "./src/js/modules/images.js");
+
 
 
 
@@ -14264,6 +14303,7 @@ document.addEventListener("DOMContentLoaded", e => {
   (0,_modules_forms__WEBPACK_IMPORTED_MODULE_5__["default"])(dataForm);
   (0,_modules_dataForms__WEBPACK_IMPORTED_MODULE_6__["default"])(dataForm);
   (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  (0,_modules_images__WEBPACK_IMPORTED_MODULE_8__["default"])();
 });
 }();
 /******/ })()
