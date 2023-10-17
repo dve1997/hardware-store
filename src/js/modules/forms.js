@@ -1,4 +1,4 @@
-const forms = () => {
+const forms = (data) => {
   function form() {
     const form = document.querySelectorAll("form"),
       inputsPhone = document.querySelectorAll("input[name='user_phone']");
@@ -41,6 +41,11 @@ const forms = () => {
         createElem(messeng.loading);
 
         const formData = new FormData(item);
+        if (item.hasAttribute("data-calc")) {
+          for (let key in data) {
+            formData.append(key, data[key]);
+          }
+        }
 
         fetch("assets/server.php", {
           method: "POST",
