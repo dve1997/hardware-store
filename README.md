@@ -1,0 +1,3 @@
+# hardware-store
+
+Practice JS
